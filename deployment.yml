@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-deployment
+  namespace: todo-app
+  labels:
+    app: todo-label
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todo-label
+  template:
+   metadata:
+    name: todo-pod
+    labels:
+      app: todo-label
+   spec:
+    containers:
+    - name: todo-container
+      image: imruta/node-todo-cicd
+      ports:
+      - containerPort: 8000
+
